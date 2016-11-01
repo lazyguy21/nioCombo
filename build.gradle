@@ -1,0 +1,77 @@
+group 'org.yyf'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+//create a single Jar with all dependencies
+task fatJar(type: Jar) {
+    manifest {
+        attributes 'Implementation-Title': 'Gradle Jar File Example',
+                'Implementation-Version': version,
+                'Main-Class': 'ort.yyf.nioCombo.io.IODemo'
+    }
+    baseName = project.name + '-all'
+    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+    with jar
+}
+
+task createJobJar(dependsOn:jar,type:Jar) {
+    manifest {
+        attributes(
+                "Implementation-Title": 'Job '
+                ,"Implementation-Version": version
+        )
+    }
+    classifier 'job'
+    destinationDir new File("$buildDir")
+    into('libs'){
+        from configurations.compile
+    }
+    into('classes'){
+        from "$buildDir/classes"
+    }
+    into('resources'){
+        from "$projectDir/src/main/resources"
+    }
+    into('scripts'){
+        from "$projectDir/src/main/scripts"
+    }
+}
+
+//jar {
+//    from {
+//        (configurations.runtime).collect {
+//            it.isDirectory() ? it : zipTree(it)
+//        }
+//    }
+//    manifest {
+//        attributes("Main-Class": "Main" )
+//    }
+//}
+//jar {
+//    manifest {  //incubating版本，以后版本可能会改API
+//        attributes("Main-Class": "ort.yyf.nioCombo.io.IODemo",
+//                "Implementation-Title": "Gradle")
+//    }
+//    into('lib') {
+//        from configurations.runtime
+//    }
+//}
+jar {
+    from("$projectDir") {
+        include 'lib/**'
+    }
+}
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile group: 'junit', name: 'junit', version: '4.11'
+    compile 'com.google.guava:guava:19.0'
+    compile group: 'io.netty', name: 'netty-all', version: '4.1.6.Final'
+
+}
