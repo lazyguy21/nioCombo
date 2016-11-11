@@ -1,4 +1,4 @@
-package org.yyf.nioCombo.netty.Decoder.LineBasedFreameDecoder;
+package org.yyf.nioCombo.netty.codec.LineBasedFreameDecoder;
 
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;

@@ -27,8 +27,7 @@ public class ServerMain {
 
         selector = Selector.open();
 
-        serverSocketChannel.register(selector, SelectionKey.OP_ACCEPT);
-
+        SelectionKey sk= serverSocketChannel.register(selector, SelectionKey.OP_ACCEPT);
         while (true) {
             selector.select();
             Set<SelectionKey> selectionKeys = selector.selectedKeys();

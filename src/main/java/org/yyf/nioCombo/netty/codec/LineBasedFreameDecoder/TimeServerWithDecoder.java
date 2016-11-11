@@ -1,4 +1,4 @@
-package org.yyf.nioCombo.netty.Decoder.LineBasedFreameDecoder;
+package org.yyf.nioCombo.netty.codec.LineBasedFreameDecoder;
 
 
 import io.netty.bootstrap.ServerBootstrap;

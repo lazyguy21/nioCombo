@@ -1,9 +1,8 @@
-package org.yyf.nioCombo.netty.Decoder.MessagePack;
+package org.yyf.nioCombo.netty.codec.MessagePack;
 
 import org.yyf.nioCombo.domain.User;
 
 import io.netty.bootstrap.Bootstrap;
-import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
 import io.netty.channel.ChannelInitializer;

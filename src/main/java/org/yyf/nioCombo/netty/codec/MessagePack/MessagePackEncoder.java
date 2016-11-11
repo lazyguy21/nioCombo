@@ -1,4 +1,4 @@
-package org.yyf.nioCombo.netty.Decoder.MessagePack;
+package org.yyf.nioCombo.netty.codec.MessagePack;
 
 import org.msgpack.MessagePack;
 
