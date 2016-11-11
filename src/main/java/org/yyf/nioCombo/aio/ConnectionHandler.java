@@ -1,4 +1,6 @@
-package org.yyf.nioCombo;
+package org.yyf.nioCombo.aio;
+
+import org.yyf.nioCombo.ReadWriteHandler;
 
 import java.io.IOException;
 import java.net.SocketAddress;
@@ -9,7 +11,7 @@ import java.nio.channels.CompletionHandler;
 /**
  * Created by tobi on 16-11-1.
  */
-public class ConnectionHanler implements CompletionHandler<AsynchronousSocketChannel, Attachment> {
+public class ConnectionHandler implements CompletionHandler<AsynchronousSocketChannel, Attachment> {
 
     @Override
     public void completed(AsynchronousSocketChannel channelClient, Attachment att) {
@@ -21,10 +23,10 @@ public class ConnectionHanler implements CompletionHandler<AsynchronousSocketCha
         }
         System.out.printf("Accepted connection from %s%n", clientAddr);
 
-        att.channelServer.accept(att, this);
+        att.assChannel.accept(att, this);
 
-        Attachment newAtt = new Attachment();
-        newAtt.channelServer = att.channelServer;
+        org.yyf.nioCombo.Attachment newAtt = new org.yyf.nioCombo.Attachment();
+        newAtt.channelServer = att.assChannel;
         newAtt.channelClient = channelClient;
         newAtt.isReadMode = true;
         newAtt.buffer = ByteBuffer.allocate(2048);
@@ -37,4 +39,6 @@ public class ConnectionHanler implements CompletionHandler<AsynchronousSocketCha
     public void failed(Throwable exc, Attachment attachment) {
         System.out.println("Failed to accept connection");
     }
+
+
 }

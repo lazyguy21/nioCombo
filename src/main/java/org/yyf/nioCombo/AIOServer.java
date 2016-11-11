@@ -1,5 +1,7 @@
 package org.yyf.nioCombo;
 
+import org.yyf.nioCombo.aio.ConnectionHandler;
+
 import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.nio.channels.AsynchronousServerSocketChannel;
@@ -20,7 +22,7 @@ public class AIOServer {
 
         Attachment attachment = new Attachment();
         attachment.channelServer = assc;
-        assc.accept(attachment, new ConnectionHanler());
+//        assc.accept(attachment, new ConnectionHandler());
         Thread.currentThread().join();
 
     }

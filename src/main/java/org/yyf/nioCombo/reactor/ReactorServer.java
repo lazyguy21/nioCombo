@@ -11,15 +11,16 @@ import java.util.Set;
 /**
  * Created by tobi on 16-11-3.
  */
-public class Reactor implements Runnable {
+public class ReactorServer implements Runnable {
     public static void main(String[] args) throws IOException {
-        new Reactor().run();
-
+        new ReactorServer().run();
     }
+
+
     final ServerSocketChannel serverSocketChannel;
     final Selector selector;
 
-    public Reactor() throws IOException {
+    public ReactorServer() throws IOException {
         serverSocketChannel = ServerSocketChannel.open();
         serverSocketChannel.bind(new InetSocketAddress(9999)).configureBlocking(false);
 
@@ -28,8 +29,6 @@ public class Reactor implements Runnable {
         SelectionKey selectionKey = serverSocketChannel.register(selector, SelectionKey.OP_ACCEPT);
 
         selectionKey.attach(new Acceptor());
-
-
     }
 
     @Override
