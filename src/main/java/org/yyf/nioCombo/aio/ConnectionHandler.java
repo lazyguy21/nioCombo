@@ -7,6 +7,7 @@ import java.net.SocketAddress;
 import java.nio.ByteBuffer;
 import java.nio.channels.AsynchronousSocketChannel;
 import java.nio.channels.CompletionHandler;
+import java.nio.charset.Charset;
 
 /**
  * Created by tobi on 16-11-1.
@@ -25,14 +26,16 @@ public class ConnectionHandler implements CompletionHandler<AsynchronousSocketCh
 
         att.assChannel.accept(att, this);
 
-        org.yyf.nioCombo.Attachment newAtt = new org.yyf.nioCombo.Attachment();
-        newAtt.channelServer = att.assChannel;
-        newAtt.channelClient = channelClient;
+        System.out.println("hahaha");
+        Attachment newAtt = new Attachment();
+        newAtt.assChannel = att.assChannel;
+        newAtt.asChannel = channelClient;
         newAtt.isReadMode = true;
         newAtt.buffer = ByteBuffer.allocate(2048);
         newAtt.clientAddr = clientAddr;
         ReadWriteHandler rwh = new ReadWriteHandler();
-        channelClient.read(newAtt.buffer, newAtt, rwh);
+        channelClient.read(newAtt.buffer, newAtt,new ClientHandler());
+
     }
 
     @Override
