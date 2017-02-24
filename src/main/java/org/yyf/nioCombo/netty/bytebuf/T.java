@@ -4,15 +4,29 @@ import com.google.common.base.Charsets;
 
 import org.junit.Test;
 
+import java.nio.ByteBuffer;
 import java.nio.charset.Charset;
 
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
+import org.junit.experimental.theories.suppliers.TestedOn;
 
 /**
  * Created by tobi on 16-11-10.
  */
 public class T {
+    @Test
+    public void testByteBuffer() throws Exception {
+        ByteBuffer byteBuffer = ByteBuffer.allocate(2);
+        byteBuffer.put("我是一些内容".getBytes());
+
+        byteBuffer.flip();
+        byte[] container = new byte[byteBuffer.remaining()];
+        byteBuffer.get(container);
+        System.out.println(new String(container));
+
+    }
+
     @Test
     public void test(){
         ByteBuf byteBuf = Unpooled.copiedBuffer("hello".getBytes());
@@ -57,5 +71,10 @@ public class T {
 
         String s1 = copy.toString(Charsets.UTF_8);
         System.out.println(s1);
+    }
+
+    @Test
+    public void testNew() throws Exception {
+
     }
 }
