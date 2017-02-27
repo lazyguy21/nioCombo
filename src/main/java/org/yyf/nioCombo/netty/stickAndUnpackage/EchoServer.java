@@ -12,7 +12,7 @@ import io.netty.channel.socket.nio.NioServerSocketChannel;
  */
 public class EchoServer {
     public static void main(String[] args) {
-
+        bind();
     }
 
     public static void bind(){
@@ -26,8 +26,9 @@ public class EchoServer {
                 .childHandler(new ChannelInitializer<SocketChannel>() {
                     @Override
                     protected void initChannel(SocketChannel ch) throws Exception {
-
+                        ch.pipeline().addLast(new ServerPackageHandler());
                     }
                 });
+        b.bind(8989).syncUninterruptibly();
     }
 }
