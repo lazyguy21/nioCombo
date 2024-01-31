@@ -8,7 +8,7 @@ import java.net.Socket;
 
 /**
  * This class implements java Socket server
- *
+ https://www.digitalocean.com/community/tutorials/java-socket-programming-server-client*
  * @author pankaj
  */
 public class SocketServerExample {
@@ -17,7 +17,7 @@ public class SocketServerExample {
     private static ServerSocket server;
     //socket server port on which it will listen
     private static int          port = 9876;
-
+//https://www.digitalocean.com/community/tutorials/java-socket-programming-server-client
     public static void main(String args[]) throws IOException, ClassNotFoundException {
         //create the socket server object
         server = new ServerSocket(port);
